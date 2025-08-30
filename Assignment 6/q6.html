@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Username Validation</title>
+  <style>.error{color:red;}</style>
+</head>
+<body>
+  <h2>Username Validation</h2>
+  <form id="userForm">
+    <input type="text" id="username" placeholder="Username">
+    <div id="err"></div><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById("userForm").onsubmit = function(e) {
+      const regex=/^[a-zA-Z0-9_]{3,16}$/;
+      if(!regex.test(username.value)) {
+        err.textContent="Invalid username (3-16 chars, letters, numbers, _ only)";
+        err.className="error";
+        e.preventDefault();
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+    .error { color: red; font-size: 14px; }
+  </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form id="regForm">
+        Name: <input type="text" id="name"><span id="nameErr" class="error"></span><br><br>
+        Email: <input type="text" id="email"><span id="emailErr" class="error"></span><br><br>
+        Password: <input type="password" id="password"><span id="passErr" class="error"></span><br><br>
+        <button type="submit" id="submitBtn" disabled>Submit</button>
+    </form>
+
+    <script>
+        const nameField = document.getElementById("name");
+        const emailField = document.getElementById("email");
+        const passField = document.getElementById("password");
+        const submitBtn = document.getElementById("submitBtn");
+
+    function validateName() 
+    {
+        if (nameField.value.trim() === "") 
+            {
+                document.getElementById("nameErr").textContent = " Name required";
+                return false;
+            }           
+        else { 
+            document.getElementById("nameErr").textContent = ""; return true;
+        }
+    }
+
+    function validateEmail() {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regex.test(emailField.value)) {
+            document.getElementById("emailErr").textContent = " Invalid email";
+            return false;
+        } else { document.getElementById("emailErr").textContent = ""; return true; }
+    }
+
+    function validatePassword() {
+        const regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+        if (!regex.test(passField.value)) {
+            document.getElementById("passErr").textContent = " Min 8 chars, 1 uppercase, 1 number";
+            return false;
+        } else { document.getElementById("passErr").textContent = ""; return true; }
+    }
+
+    function checkAll() {
+      submitBtn.disabled = !(validateName() && validateEmail() && validatePassword());
+    }
+
+    nameField.addEventListener("blur", validateName);
+    emailField.addEventListener("blur", validateEmail);
+    passField.addEventListener("blur", validatePassword);
+    document.getElementById("regForm").addEventListener("input", checkAll);
+  </script>
+</body>
+</html>

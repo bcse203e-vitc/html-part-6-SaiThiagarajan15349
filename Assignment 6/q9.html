@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><title>Country Dropdown</title></head>
+<body>
+  <h2>Continents & Countries</h2>
+  <select id="continent">
+    <option value="">Select Continent</option>
+    <option value="Asia">Asia</option>
+    <option value="Europe">Europe</option>
+    <option value="Africa">Africa</option>
+  </select>
+
+  <select id="country">
+    <option value="">Select Country</option>
+  </select>
+
+  <script>
+    const data={
+      Asia:["India","China","Japan"],
+      Europe:["Germany","France","Italy"],
+      Africa:["Nigeria","Kenya","Egypt"]
+    };
+    continent.onchange=function(){
+      country.innerHTML='<option value="">Select Country</option>';
+      if(this.value){
+        data[this.value].forEach(c=>{
+          let opt=document.createElement("option");
+          opt.value=c; opt.text=c;
+          country.appendChild(opt);
+        });
+      }
+    };
+  </script>
+</body>
+</html>

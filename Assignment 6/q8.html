@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hex Color Validation</title>
+  <style>#preview{width:50px;height:50px;display:inline-block;border:1px solid #000;}</style>
+</head>
+<body>
+  <h2>Hex Color Code</h2>
+  <input type="text" id="color" placeholder="#FFF or #FFFFFF">
+  <div id="preview"></div>
+  <div id="msg"></div>
+
+  <script>
+    const color=document.getElementById("color"), preview=document.getElementById("preview"), msg=document.getElementById("msg");
+    color.addEventListener("input", () => {
+      const regex=/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+      if(regex.test(color.value)) {
+        msg.textContent="Valid ✔"; msg.style.color="green";
+        preview.style.background=color.value;
+      } else {
+        msg.textContent="Invalid ✘"; msg.style.color="red";
+        preview.style.background="white";
+      }
+    });
+  </script>
+</body>
+</html>

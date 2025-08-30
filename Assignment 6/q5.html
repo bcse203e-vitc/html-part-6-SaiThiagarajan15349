@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Match</title>
+  <style>.success{color:green;} .error{color:red;}</style>
+</head>
+<body>
+  <h2>Password Match</h2>
+  Password: <input type="password" id="pass"><br><br>
+  Confirm Password: <input type="password" id="cpass"><br><br>
+  <div id="msg"></div>
+
+  <script>
+    const pass=document.getElementById("pass"), cpass=document.getElementById("cpass"), msg=document.getElementById("msg");
+    function checkMatch() {
+      if(pass.value && cpass.value) {
+        if(pass.value===cpass.value){ msg.textContent="Passwords match ✔"; msg.className="success"; }
+        else { msg.textContent="Passwords do not match ✘"; msg.className="error"; }
+      } else msg.textContent="";
+    }
+    pass.oninput=checkMatch; cpass.oninput=checkMatch;
+  </script>
+</body>
+</html>

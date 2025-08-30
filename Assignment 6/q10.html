@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head><title>Dynamic Form Builder</title></head>
+<body>
+  <h2>Form Builder</h2>
+  <select id="type">
+    <option value="text">Text</option>
+    <option value="email">Email</option>
+    <option value="password">Password</option>
+  </select>
+  <button id="add">Add</button>
+
+  <form id="form"></form>
+
+  <script>
+    document.getElementById("add").onclick=function(){
+      const type=document.getElementById("type").value;
+      const input=document.createElement("input");
+      input.type=type; input.placeholder=type+" input";
+      input.required=true;
+
+      input.onblur=function(){
+        if(type==="email"){
+          const regex=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+          if(!regex.test(input.value)) alert("Invalid email!");
+        }
+        if(type==="text"){
+          const regex=/^[A-Za-z\s]+$/;
+          if(!regex.test(input.value)) alert("Only alphabets allowed!");
+        }
+        if(type==="password"){
+          const regex=/^(?=.*[A-Z])(?=.*\d).{8,}$/;
+          if(!regex.test(input.value)) alert("Weak password!");
+        }
+      };
+
+      document.getElementById("form").appendChild(document.createElement("br"));
+      document.getElementById("form").appendChild(input);
+    };
+  </script>
+</body>
+</html>

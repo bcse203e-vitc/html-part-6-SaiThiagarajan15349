@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hobbies Form</title>
+  <style>.error{color:red;}</style>
+</head>
+<body>
+  <h2>Hobbies</h2>
+  <form id="hobbyForm">
+    <div id="hobbies">
+      <input type="text" name="hobby" placeholder="Enter hobby">
+    </div>
+    <button type="button" id="addBtn">Add Hobby</button>
+  </form>
+
+  <script>
+    const hobbiesDiv = document.getElementById("hobbies");
+    document.getElementById("addBtn").onclick = function() {
+      const input = document.createElement("input");
+      input.type="text"; input.name="hobby"; input.placeholder="Enter hobby";
+      hobbiesDiv.appendChild(document.createElement("br"));
+      hobbiesDiv.appendChild(input);
+      input.addEventListener("blur", validate);
+    };
+    function validate(e) {
+      const regex=/^[A-Za-z\s]+$/;
+      if(!regex.test(e.target.value)) alert("Only alphabets allowed!");
+    }
+  </script>
+</body>
+</html>
